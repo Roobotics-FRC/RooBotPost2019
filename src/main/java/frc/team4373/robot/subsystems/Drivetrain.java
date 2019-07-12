@@ -46,6 +46,7 @@ public class Drivetrain extends Subsystem {
     private DoubleSolenoid piston;
     private Relay lightRingRelay;
     private boolean middleWheelDeployed = true; // TODO: is this a valid assumption?
+    private double initialAngle;
 
     private Drivetrain() {
         this.right1 = new WPI_TalonSRX(RobotMap.DRIVETRAIN_MOTOR_RIGHT_1);
@@ -85,6 +86,59 @@ public class Drivetrain extends Subsystem {
         this.left1.setSensorPhase(RobotMap.DRIVETRAIN_LEFT_ENCODER_PHASE);
         this.middle1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
         this.middle1.setSensorPhase(RobotMap.DRIVETRAIN_MIDDLE_SENSOR_PHASE);
+
+        this.initialAngle = getPigeonYaw();
+    }
+
+    /**
+     * Returns the angle from the given inputs, relative to the field, where 0 is forward and clockwise counts up.
+     */
+    public double calculateAngle(double x, double y) {
+        return (((360 - (Math.toDegrees(Math.atan(y/x) + (x >= 0 ? 0 : Math.PI)) - 90)) % 360) + 360) % 360;
+        //FIXME: This might be Math.atan2(double y, double x) // plus toDegrees // 0lus some more stuff
+        /*
+        double a = Math.atan(y/x);
+
+        if (y >= 0) {
+            if (x >= 0) {
+                return a;
+            } else {
+                return a + Math.PI;
+            }
+        } else {
+            if (x >= 0) {
+                return a;
+            } else {
+                return a + Math.PI;
+            }
+        }
+        */
+    }
+
+    /**
+     * Returns the current angle, assuming the initial position was 0.
+     */
+    public double getAngle() {
+        return (((getPigeonYaw()- initialAngle) % 360) + 360) % 360;
+    }
+
+    public double getWheelAngle() {
+        return 0;//TODO: Wheel angle
+    }
+
+    /**
+     * Rotates the given motor at the specified power. 1 is clockwise (viewed from the top), -1 is counterclockwise.
+     * @param motor
+     * @param power
+     */
+    public void rotate(TalonID motor, double power) {
+        //rotate the given motor.
+    }
+
+    public void rotate(double power) {
+        for (TalonID t: TalonID.values()) {
+            rotate(t, power);
+        }
     }
 
     /**
