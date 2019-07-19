@@ -61,8 +61,8 @@ public class TurnToAngleAuton extends PIDCommand {
             this.cooldownStart = System.currentTimeMillis();
         }
 
-        this.drivetrain.setPercentOutput(Drivetrain.TalonID.RIGHT_1, -output);
-        this.drivetrain.setPercentOutput(Drivetrain.TalonID.LEFT_1, output);
+        this.drivetrain.setPercentOutput(Drivetrain.MotorID.RIGHT_1, -output);
+        this.drivetrain.setPercentOutput(Drivetrain.MotorID.LEFT_1, output);
     }
 
     @Override

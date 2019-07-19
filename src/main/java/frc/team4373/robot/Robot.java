@@ -114,11 +114,11 @@ public class Robot extends TimedRobot {
     @Override
     public void robotPeriodic() {
         SmartDashboard.putNumber("R Pow",
-                Drivetrain.getInstance().getOutputPercent(Drivetrain.TalonID.RIGHT_1));
+                Drivetrain.getInstance().getOutputPercent(Drivetrain.MotorID.RIGHT_1));
         SmartDashboard.putNumber("L Pow",
-                Drivetrain.getInstance().getOutputPercent(Drivetrain.TalonID.LEFT_1));
+                Drivetrain.getInstance().getOutputPercent(Drivetrain.MotorID.LEFT_1));
         SmartDashboard.putNumber("C Pow",
-                Drivetrain.getInstance().getOutputPercent(Drivetrain.TalonID.MIDDLE_1));
+                Drivetrain.getInstance().getOutputPercent(Drivetrain.MotorID.MIDDLE_1));
         SmartDashboard.putNumber("Poten Value", Lift.getInstance().getPotenValue());
         SmartDashboard.putNumber("Cargo Motor", Intake.getInstance().getRightMotorPower());
         SmartDashboard.putBoolean("Hatch Retain",

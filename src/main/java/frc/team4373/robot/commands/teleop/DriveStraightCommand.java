@@ -53,7 +53,7 @@ public class DriveStraightCommand extends PIDCommand {
 
         if (strafeOverride) {
             this.drivetrain.deployMiddleWheel();
-            this.drivetrain.setPercentOutput(Drivetrain.TalonID.MIDDLE_1, joyX);
+            this.drivetrain.setPercentOutput(Drivetrain.MotorID.MIDDLE_1, joyX);
             this.setSetpoint(drivetrain.getPigeonYaw());
             return;
         }
@@ -71,8 +71,8 @@ public class DriveStraightCommand extends PIDCommand {
             if (joyZ != 0) this.lastManualOp = System.currentTimeMillis();
             this.setSetpoint(drivetrain.getPigeonYaw());
         }
-        this.drivetrain.setPercentOutput(Drivetrain.TalonID.RIGHT_1, rightOutput);
-        this.drivetrain.setPercentOutput(Drivetrain.TalonID.LEFT_1, leftOutput);
+        this.drivetrain.setPercentOutput(Drivetrain.MotorID.RIGHT_1, rightOutput);
+        this.drivetrain.setPercentOutput(Drivetrain.MotorID.LEFT_1, leftOutput);
         if (!driveStraightOverride) {
             switch (OI.getOI().getDriveJoystick().getPOV()) {
                 case 315:
@@ -88,7 +88,7 @@ public class DriveStraightCommand extends PIDCommand {
                 default:
                     break;
             }
-            this.drivetrain.setPercentOutput(Drivetrain.TalonID.MIDDLE_1, joyX);
+            this.drivetrain.setPercentOutput(Drivetrain.MotorID.MIDDLE_1, joyX);
         }
         /*
         if (this.drivetrain.isMiddleWheelDeployed()) { //deployed

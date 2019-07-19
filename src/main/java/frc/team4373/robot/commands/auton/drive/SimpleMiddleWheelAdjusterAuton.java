@@ -44,7 +44,7 @@ public class SimpleMiddleWheelAdjusterAuton extends PIDCommand {
 
     @Override
     protected double returnPIDInput() {
-        return this.drivetrain.getSensorPosition(Drivetrain.TalonID.MIDDLE_1);
+        return this.drivetrain.getSensorPosition(Drivetrain.MotorID.MIDDLE_1);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class SimpleMiddleWheelAdjusterAuton extends PIDCommand {
             if (Math.abs(setpointInches) < RobotMap.ALLOWABLE_LATERAL_OFFSET_FROM_VIS_TARGET) {
                 this.iterationCount = 2;
             } else {
-                this.setSetpoint(this.drivetrain.getSensorPosition(Drivetrain.TalonID.MIDDLE_1)
+                this.setSetpoint(this.drivetrain.getSensorPosition(Drivetrain.MotorID.MIDDLE_1)
                         + setpointInches / RobotMap.DRIVETRAIN_MID_ENC_UNITS_TO_IN);
                 this.readyForPID = true;
             }
@@ -69,7 +69,7 @@ public class SimpleMiddleWheelAdjusterAuton extends PIDCommand {
             if (Math.abs(output) < outputThreshold) {
                 ++this.iterationCount;
             } else {
-                this.drivetrain.setPercentOutput(Drivetrain.TalonID.MIDDLE_1, output);
+                this.drivetrain.setPercentOutput(Drivetrain.MotorID.MIDDLE_1, output);
             }
         }
     }

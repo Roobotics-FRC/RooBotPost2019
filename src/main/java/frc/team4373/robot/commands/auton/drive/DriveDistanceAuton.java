@@ -90,9 +90,9 @@ public class DriveDistanceAuton extends PIDCommand {
 
     @Override
     protected void usePIDOutput(double angleOutput) {
-        this.drivetrain.setPercentOutput(Drivetrain.TalonID.RIGHT_1,
+        this.drivetrain.setPercentOutput(Drivetrain.MotorID.RIGHT_1,
                 distancePIDOutput + angleOutput);
-        this.drivetrain.setPercentOutput(Drivetrain.TalonID.LEFT_1,
+        this.drivetrain.setPercentOutput(Drivetrain.MotorID.LEFT_1,
                 distancePIDOutput - angleOutput);
     }
 
@@ -101,8 +101,8 @@ public class DriveDistanceAuton extends PIDCommand {
      * @return the average position of the drivetrain.
      */
     private int getAveragePosition() {
-        return (this.drivetrain.getSensorPosition(Drivetrain.TalonID.RIGHT_1)
-                + this.drivetrain.getSensorPosition(Drivetrain.TalonID.LEFT_1)) / 2;
+        return (this.drivetrain.getSensorPosition(Drivetrain.MotorID.RIGHT_1)
+                + this.drivetrain.getSensorPosition(Drivetrain.MotorID.LEFT_1)) / 2;
     }
 
     @Override

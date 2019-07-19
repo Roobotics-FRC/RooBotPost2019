@@ -27,14 +27,14 @@ public class StrafeDistanceAuton extends PIDCommand {
                 SmartDashboard.getNumber("kD-D", 0));
         this.getPIDController().setOutputRange(-RobotMap.AUTON_MIDDLE_WHEEL_ADJUSTMENT_SPEED,
                 RobotMap.AUTON_MIDDLE_WHEEL_ADJUSTMENT_SPEED);
-        this.setSetpoint(this.drivetrain.getSensorPosition(Drivetrain.TalonID.MIDDLE_1)
+        this.setSetpoint(this.drivetrain.getSensorPosition(Drivetrain.MotorID.MIDDLE_1)
                 + SmartDashboard.getNumber("Strafe Distance", 0)
                 / RobotMap.DRIVETRAIN_MID_ENC_UNITS_TO_IN);
     }
 
     @Override
     protected double returnPIDInput() {
-        return this.drivetrain.getSensorPosition(Drivetrain.TalonID.MIDDLE_1);
+        return this.drivetrain.getSensorPosition(Drivetrain.MotorID.MIDDLE_1);
     }
 
     @Override
@@ -42,11 +42,11 @@ public class StrafeDistanceAuton extends PIDCommand {
         System.out.println("PID Output = " + output);
         System.out.println("PID Setpoint = " + this.getSetpoint());
         System.out.println("PID Cur = " + this.drivetrain.getSensorPosition(
-                Drivetrain.TalonID.MIDDLE_1));
+                Drivetrain.MotorID.MIDDLE_1));
         if (Math.abs(output) < outputThreshold) {
             this.finished = true;
         } else {
-            drivetrain.setPercentOutput(Drivetrain.TalonID.MIDDLE_1, output);
+            drivetrain.setPercentOutput(Drivetrain.MotorID.MIDDLE_1, output);
         }
     }
 
