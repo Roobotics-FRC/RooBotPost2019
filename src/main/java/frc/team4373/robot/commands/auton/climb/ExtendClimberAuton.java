@@ -11,7 +11,6 @@ import frc.team4373.robot.subsystems.Drivetrain;
  */
 public class ExtendClimberAuton extends Command {
     private Climber climber;
-    private ClimberDrive cld;
     private Drivetrain drivetrain;
 
     /**
@@ -19,7 +18,6 @@ public class ExtendClimberAuton extends Command {
      */
     public ExtendClimberAuton() {
         requires(this.climber = Climber.getInstance());
-        requires(this.cld = ClimberDrive.getInstance());
         requires(this.drivetrain = Drivetrain.getInstance());
     }
 
@@ -32,7 +30,7 @@ public class ExtendClimberAuton extends Command {
     protected void execute() {
         this.climber.climb();
         this.drivetrain.setNeutralMode(NeutralMode.Coast);
-        this.cld.setNeutralMode(NeutralMode.Brake);
+        System.out.println(this.getClass().getName());
     }
 
     @Override

@@ -7,16 +7,16 @@ import frc.team4373.robot.subsystems.ClimberDrive;
 import frc.team4373.robot.subsystems.Drivetrain;
 
 /**
- * Extends rear climber and sets neutral modes.
+ * Extends the font climber and sets neutral modes.
  */
-public class DeployClimberRearAuton extends Command {
+public class NeutralizeClimberFrontAuton extends Command {
     private Climber climber;
     private Drivetrain drivetrain;
 
     /**
      * Constructs a command to retract the climber.
      */
-    public DeployClimberRearAuton() {
+    public NeutralizeClimberFrontAuton() {
         requires(this.climber = Climber.getInstance());
         requires(this.drivetrain = Drivetrain.getInstance());
     }
@@ -28,7 +28,7 @@ public class DeployClimberRearAuton extends Command {
 
     @Override
     protected void execute() {
-        this.climber.deployRear();
+        this.climber.neutralizeFront();
         this.drivetrain.setNeutralMode(NeutralMode.Coast);
         System.out.println(this.getClass().getName());
     }

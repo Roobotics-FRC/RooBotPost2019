@@ -11,7 +11,6 @@ import frc.team4373.robot.subsystems.Drivetrain;
  */
 public class ExtendClimberWithPitchAuton extends Command {
     private Climber climber;
-    private ClimberDrive cld;
     private Drivetrain drivetrain;
 
     private long lastPitchTime = -1;
@@ -27,7 +26,6 @@ public class ExtendClimberWithPitchAuton extends Command {
      */
     public ExtendClimberWithPitchAuton() {
         requires(this.climber = Climber.getInstance());
-        requires(this.cld = ClimberDrive.getInstance());
         requires(this.drivetrain = Drivetrain.getInstance());
     }
 
@@ -43,8 +41,9 @@ public class ExtendClimberWithPitchAuton extends Command {
     protected void execute() {
         long now = System.currentTimeMillis();
         if (!this.initialDeployOccurred) {
-            this.climber.deployFront();
-            //TODO: this.climber.climb();
+            // this.climber.deployFront();
+            //TODO: below
+            this.climber.climb();
             this.initialDeployOccurred = true;
         } else {
             double pitch = this.drivetrain.getPigeonPitch();
@@ -65,8 +64,8 @@ public class ExtendClimberWithPitchAuton extends Command {
                 }
             }
             this.drivetrain.setNeutralMode(NeutralMode.Coast);
-            this.cld.setNeutralMode(NeutralMode.Brake);
         }
+        System.out.println(this.getClass().getName());
     }
 
     @Override

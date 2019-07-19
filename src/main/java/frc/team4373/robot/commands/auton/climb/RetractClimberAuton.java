@@ -13,7 +13,6 @@ import frc.team4373.robot.subsystems.Drivetrain;
  */
 public class RetractClimberAuton extends Command {
     private Climber climber;
-    private ClimberDrive cld;
     private Drivetrain drivetrain;
 
     /**
@@ -22,7 +21,6 @@ public class RetractClimberAuton extends Command {
     public RetractClimberAuton() {
         requires(this.climber = Climber.getInstance());
         requires(this.drivetrain = Drivetrain.getInstance());
-        requires(this.cld = ClimberDrive.getInstance());
     }
 
     @Override
@@ -34,7 +32,7 @@ public class RetractClimberAuton extends Command {
     protected void execute() {
         this.climber.retractAll();
         this.drivetrain.setNeutralMode(NeutralMode.Brake);
-        this.cld.setNeutralMode(NeutralMode.Coast);
+        System.out.println(this.getClass().getName());
     }
 
     @Override

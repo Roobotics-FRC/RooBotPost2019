@@ -3,7 +3,7 @@ package frc.team4373.robot.input;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.team4373.robot.RobotMap;
 import frc.team4373.robot.commands.auton.ClearSubsystemsCommandGroup;
-import frc.team4373.robot.commands.auton.climb.ExtendClimberWithPitchAuton;
+import frc.team4373.robot.commands.auton.climb.*;
 import frc.team4373.robot.commands.auton.drive.SimpleMiddleWheelAdjusterAuton;
 import frc.team4373.robot.commands.auton.lift.SetLiftAuton;
 import frc.team4373.robot.commands.teleop.DrivetrainCommand;
@@ -19,87 +19,31 @@ public class OI {
     private RooJoystick<FineGrainedPiecewiseFilter> driveJoystick;
     private RooJoystick<XboxAxisFilter> operatorJoystick;
 
-    // lift buttons
-    private JoystickButton operatorLiftCargoL2;
-    private JoystickButton operatorLiftCargoL1;
-    private JoystickButton operatorLiftCargoShip;
-    private JoystickButton operatorLiftGround;
-    private JoystickButton operatorStowIntake;
-
-    // climb buttons
-    // private JoystickButton driverClimbRaiseBotFront;
-    // private JoystickButton driverClimbRaiseBotRear;
-    // private JoystickButton driverClimbRetractFront;
-    // private JoystickButton driverClimbRetractRear;
-    private JoystickButton climb;
-
-    // drive buttons
-    private JoystickButton driverVisionAlignment;
-    private JoystickButton driverToggleLightRing;
-    private JoystickButton killAllAuton;
-    private JoystickButton driverStartBasicDrive;
-
     private OI() {
         this.driveJoystick =
                 new RooJoystick<>(RobotMap.DRIVE_JOYSTICK_PORT, new FineGrainedPiecewiseFilter());
         this.operatorJoystick =
                 new RooJoystick<>(RobotMap.OPERATOR_JOYSTICK_PORT, new XboxAxisFilter());
 
-        operatorLiftCargoL2 = new JoystickButton(operatorJoystick,
-                RobotMap.OPERATOR_BUTTON_LIFT_CARGO_L2);
-        operatorLiftCargoL2.whenPressed(new SetLiftAuton(SetLiftAuton.Position.CARGO_2));
+        new JoystickButton(driveJoystick, 7).whenPressed(new DeployClimberFrontAuton());
+        new JoystickButton(driveJoystick, 9).whenPressed(new NeutralizeClimberFrontAuton());
+        new JoystickButton(driveJoystick, 11).whenPressed(new RetractClimberFrontAuton());
 
-        operatorLiftCargoL1 = new JoystickButton(operatorJoystick,
-                RobotMap.OPERATOR_BUTTON_LIFT_CARGO_L1);
-        operatorLiftCargoL1.whenPressed(new SetLiftAuton(SetLiftAuton.Position.CARGO_1));
+        new JoystickButton(driveJoystick, 8).whenPressed(new DeployClimberRearAuton());
+        new JoystickButton(driveJoystick, 10).whenPressed(new NeutralizeClimberRearAuton());
+        new JoystickButton(driveJoystick, 12).whenPressed(new RetractClimberRearAuton());
 
-        operatorLiftCargoShip = new JoystickButton(operatorJoystick,
-                RobotMap.OPERATOR_BUTTON_LIFT_CARGO_SHIP);
-        operatorLiftCargoShip.whenPressed(new SetLiftAuton(SetLiftAuton.Position.CARGO_SHIP));
+        new JoystickButton(driveJoystick, 5).whenPressed(new ExtendClimberAuton());
+        new JoystickButton(driveJoystick, 3).whenPressed(new NeutralizeClimberAuton());
+        new JoystickButton(driveJoystick, 2).whenPressed(new RetractClimberAuton());
 
-        operatorLiftGround = new JoystickButton(operatorJoystick,
-                RobotMap.OPERATOR_BUTTON_LIFT_TO_LOAD);
-        operatorLiftGround.whenPressed(new SetLiftAuton(SetLiftAuton.Position.LOADING));
+        // new JoystickButton(driveJoystick, 1).whenPressed(new ExtendClimberWithPitchAuton());
+        new JoystickButton(driveJoystick, 1).whenPressed(new ExtendClimberWithNeutralizeAuton());
 
-        operatorStowIntake = new JoystickButton(operatorJoystick,
-                RobotMap.OPERATOR_BUTTON_LIFT_TO_GROUND);
-        operatorStowIntake.whenPressed(new SetLiftAuton(SetLiftAuton.Position.GROUND));
 
-        // driverClimbRaiseBotFront = new JoystickButton(driveJoystick,
-        //         RobotMap.DRIVER_BUTTON_CLIMB_RAISE_BOT_FRONT);
-        // driverClimbRaiseBotFront.whenPressed(new DeployClimberFrontAuton());
-        //
-        // driverClimbRaiseBotRear = new JoystickButton(driveJoystick,
-        //         RobotMap.DRIVER_BUTTON_CLIMB_RAISE_BOT_REAR);
-        // driverClimbRaiseBotRear.whenPressed(new DeployClimberRearAuton());
-        //
-        // driverClimbRetractFront = new JoystickButton(driveJoystick,
-        //         RobotMap.DRIVER_BUTTON_CLIMB_RETRACT_FRONT);
-        // driverClimbRetractFront.whenPressed(new RetractClimberFrontAuton());
-        //
-        // driverClimbRetractRear = new JoystickButton(driveJoystick,
-        //         RobotMap.DRIVER_BUTTON_CLIMB_RETRACT_REAR);
-        // driverClimbRetractRear.whenPressed(new RetractClimberRearAuton());
+        new JoystickButton(driveJoystick, 4).whenPressed(new DrivetrainCommand());
 
-        climb = new JoystickButton(driveJoystick,
-                RobotMap.DRIVER_BUTTON_CLIMB_RAISE_BOT);
-        climb.whenPressed(new ExtendClimberWithPitchAuton());
-
-        driverVisionAlignment = new JoystickButton(driveJoystick,
-                RobotMap.DRIVER_BUTTON_VISION_ALIGNMENT);
-        driverVisionAlignment.whenPressed(new SimpleMiddleWheelAdjusterAuton());
-
-        driverToggleLightRing = new JoystickButton(driveJoystick,
-                RobotMap.DRIVER_BUTTON_TOGGLE_LIGHT_RING);
-        driverToggleLightRing.whenPressed(new ToggleLightRingCommand());
-
-        driverStartBasicDrive = new JoystickButton(driveJoystick,
-                RobotMap.DRIVER_BUTTON_BASIC_DRIVE);
-        driverStartBasicDrive.whenPressed(new DrivetrainCommand());
-
-        killAllAuton = new JoystickButton(driveJoystick,
-                RobotMap.DRIVER_BUTTON_KILL_AUTON);
-        killAllAuton.whenPressed(new ClearSubsystemsCommandGroup());
+        new JoystickButton(driveJoystick, 6).whenPressed(new ClearSubsystemsCommandGroup());
     }
 
     /**
