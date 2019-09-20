@@ -19,11 +19,11 @@ public class OI {
     private RooJoystick<XboxAxisFilter> operatorJoystick;
 
     // lift buttons
-    private JoystickButton operatorLiftCargoL2;
-    private JoystickButton operatorLiftCargoL1;
-    private JoystickButton operatorLiftCargoShip;
-    private JoystickButton operatorLiftGround;
-    private JoystickButton operatorStowIntake;
+    // private JoystickButton operatorLiftCargoL2;
+    // private JoystickButton operatorLiftCargoL1;
+    // private JoystickButton operatorLiftCargoShip;
+    // private JoystickButton operatorLiftGround;
+    // private JoystickButton operatorStowIntake;
 
     // climb buttons
     // private JoystickButton driverClimbRaiseBotFront;
@@ -43,25 +43,25 @@ public class OI {
         this.operatorJoystick =
                 new RooJoystick<>(RobotMap.OPERATOR_JOYSTICK_PORT, new XboxAxisFilter());
 
-        operatorLiftCargoL2 = new JoystickButton(operatorJoystick,
-                RobotMap.OPERATOR_BUTTON_LIFT_CARGO_L2);
-        operatorLiftCargoL2.whenPressed(new SetLiftAuton(SetLiftAuton.Position.CARGO_2));
-
-        operatorLiftCargoL1 = new JoystickButton(operatorJoystick,
-                RobotMap.OPERATOR_BUTTON_LIFT_CARGO_L1);
-        operatorLiftCargoL1.whenPressed(new SetLiftAuton(SetLiftAuton.Position.CARGO_1));
-
-        operatorLiftCargoShip = new JoystickButton(operatorJoystick,
-                RobotMap.OPERATOR_BUTTON_LIFT_CARGO_SHIP);
-        operatorLiftCargoShip.whenPressed(new SetLiftAuton(SetLiftAuton.Position.CARGO_SHIP));
-
-        operatorLiftGround = new JoystickButton(operatorJoystick,
-                RobotMap.OPERATOR_BUTTON_LIFT_TO_LOAD);
-        operatorLiftGround.whenPressed(new SetLiftAuton(SetLiftAuton.Position.LOADING));
-
-        operatorStowIntake = new JoystickButton(operatorJoystick,
-                RobotMap.OPERATOR_BUTTON_LIFT_TO_GROUND);
-        operatorStowIntake.whenPressed(new SetLiftAuton(SetLiftAuton.Position.GROUND));
+        // operatorLiftCargoL2 = new JoystickButton(operatorJoystick,
+        //         RobotMap.OPERATOR_BUTTON_LIFT_CARGO_L2);
+        // operatorLiftCargoL2.whenPressed(new SetLiftAuton(SetLiftAuton.Position.CARGO_2));
+        //
+        // operatorLiftCargoL1 = new JoystickButton(operatorJoystick,
+        //         RobotMap.OPERATOR_BUTTON_LIFT_CARGO_L1);
+        // operatorLiftCargoL1.whenPressed(new SetLiftAuton(SetLiftAuton.Position.CARGO_1));
+        //
+        // operatorLiftCargoShip = new JoystickButton(operatorJoystick,
+        //         RobotMap.OPERATOR_BUTTON_LIFT_CARGO_SHIP);
+        // operatorLiftCargoShip.whenPressed(new SetLiftAuton(SetLiftAuton.Position.CARGO_SHIP));
+        //
+        // operatorLiftGround = new JoystickButton(operatorJoystick,
+        //         RobotMap.OPERATOR_BUTTON_LIFT_TO_LOAD);
+        // operatorLiftGround.whenPressed(new SetLiftAuton(SetLiftAuton.Position.LOADING));
+        //
+        // operatorStowIntake = new JoystickButton(operatorJoystick,
+        //         RobotMap.OPERATOR_BUTTON_LIFT_TO_GROUND);
+        // operatorStowIntake.whenPressed(new SetLiftAuton(SetLiftAuton.Position.GROUND));
 
         // driverClimbRaiseBotFront = new JoystickButton(driveJoystick,
         //         RobotMap.DRIVER_BUTTON_CLIMB_RAISE_BOT_FRONT);
