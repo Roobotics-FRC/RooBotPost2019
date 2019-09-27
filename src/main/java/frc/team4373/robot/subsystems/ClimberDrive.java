@@ -60,6 +60,6 @@ public class ClimberDrive extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new ClimberDriveCommand());
+        // setDefaultCommand(new ClimberDriveCommand());
     }
 }
