@@ -1,6 +1,7 @@
 package frc.team4373.robot;
 
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -12,6 +13,9 @@ import frc.team4373.robot.commands.auton.climb.RetractClimberAuton;
 import frc.team4373.robot.commands.auton.sequences.*;
 import frc.team4373.robot.subsystems.*;
 
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -30,6 +34,8 @@ public class Robot extends TimedRobot {
     private Compressor compressor;
 
     private Map<String, String> autonEntries;
+
+    public static boolean isSecondBot = false;
 
     /**
      * Constructor for the Robot class. Variable initialization occurs here;
@@ -54,6 +60,15 @@ public class Robot extends TimedRobot {
         autonEntries.put("R Hatch 2 Mid", "r.hatch.far.mid");
 
         this.compressor = new Compressor(RobotMap.PCM_1_PORT);
+
+        // [0, -128, 47, 23, 93, -89]
+        try {
+            byte[] addr = NetworkInterface.getByInetAddress(
+                    InetAddress.getLocalHost()).getHardwareAddress();
+            Robot.isSecondBot = Arrays.equals(addr, new byte[]{0, -128, 47, 23, 93, -89});
+        } catch (Exception e) {
+            DriverStation.reportError("Could not find bot IP address", false);
+        }
     }
 
     /**
