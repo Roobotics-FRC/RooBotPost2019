@@ -40,6 +40,8 @@ public class Lift extends Subsystem {
     private WPI_TalonSRX talon2;
     private DoubleSolenoid piston1;
     private Potentiometer poten;
+    private double upperSafety;
+    private double lowerSafety;
 
     private Lift() {
         this.talon1 = new WPI_TalonSRX(RobotMap.LIFT_MOTOR_1);
@@ -58,6 +60,14 @@ public class Lift extends Subsystem {
 
         this.talon1.setInverted(RobotMap.LIFT_MOTOR_1_INVERTED);
         this.talon2.setInverted(RobotMap.LIFT_MOTOR_2_INVERTED);
+
+        if (Robot.isSecondBot) {
+            upperSafety = RobotMap.LIFT_MAXIMUM_SAFE_ANGLE_2;
+            lowerSafety = RobotMap.LIFT_MINIMUM_SAFE_ANGLE_2;
+        } else {
+            upperSafety = RobotMap.LIFT_MAXIMUM_SAFE_ANGLE_1;
+            lowerSafety = RobotMap.LIFT_MINIMUM_SAFE_ANGLE_1;
+        }
     }
 
     /**
@@ -93,9 +103,9 @@ public class Lift extends Subsystem {
     public void setPercentOutputRaw(double power) {
         power = Robot.constrainPercentOutput(power);
         double angle = getPotenValue();
-        if (angle <= RobotMap.LIFT_MINIMUM_SAFE_ANGLE) {
+        if (angle <= lowerSafety) {
             this.talon1.set(power > 0 ? power : 0);
-        } else if (angle >= RobotMap.LIFT_MAXIMUM_SAFE_ANGLE) {
+        } else if (angle >= upperSafety) {
             this.talon1.set(power < 0 ? power : 0);
         } else {
             this.talon1.set(power);
@@ -107,7 +117,12 @@ public class Lift extends Subsystem {
      * @return absolute value of potentiometer.
      */
     public double getPotenValue() {
-        return poten.get();
+        if (Robot.isSecondBot) {
+            return -(poten.get() - RobotMap.LIFT_MAXIMUM_SAFE_ANGLE_2)
+                    + RobotMap.LIFT_MINIMUM_SAFE_ANGLE_2;
+        } else {
+            return poten.get();
+        }
     }
 
     public boolean isTelescoped() {
