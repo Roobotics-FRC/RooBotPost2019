@@ -113,11 +113,13 @@ public class Lift extends Subsystem {
     }
 
     /**
-     * Gets the absolute value of the potentiometer, converted with ratio.
+     * Gets the absolute value of the potentiometer
+     * and adjusts to compensate for hardware irregularity on second bot.
      * @return absolute value of potentiometer.
      */
     public double getPotenValue() {
         if (Robot.isSecondBot) {
+            // Since potentiometer is backwards on second bot, reverse [max, min] to [min, max]
             return -(poten.get() - RobotMap.LIFT_MAXIMUM_SAFE_ANGLE_2)
                     + RobotMap.LIFT_MINIMUM_SAFE_ANGLE_2;
         } else {

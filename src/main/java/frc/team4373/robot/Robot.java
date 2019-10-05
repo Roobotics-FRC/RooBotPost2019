@@ -61,7 +61,6 @@ public class Robot extends TimedRobot {
 
         this.compressor = new Compressor(RobotMap.PCM_1_PORT);
 
-        // [0, -128, 47, 23, 93, -89]
         try {
             byte[] addr = NetworkInterface.getByInetAddress(
                     InetAddress.getLocalHost()).getHardwareAddress();
