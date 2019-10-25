@@ -120,8 +120,7 @@ public class Lift extends Subsystem {
     public double getPotenValue() {
         if (Robot.isSecondBot) {
             // Since potentiometer is backwards on second bot, reverse [max, min] to [min, max]
-            return -(poten.get() - RobotMap.LIFT_MAXIMUM_SAFE_ANGLE_2)
-                    + RobotMap.LIFT_MINIMUM_SAFE_ANGLE_2;
+            return -poten.get() + RobotMap.LIFT_MAX_POTEN_VALUE;
         } else {
             return poten.get();
         }
