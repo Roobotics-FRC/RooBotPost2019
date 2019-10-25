@@ -66,7 +66,8 @@ public class Robot extends TimedRobot {
                     InetAddress.getLocalHost()).getHardwareAddress();
             Robot.isSecondBot = Arrays.equals(addr, new byte[]{0, -128, 47, 23, 93, -89});
         } catch (Exception e) {
-            DriverStation.reportError("Could not find bot IP address", false);
+            DriverStation.reportError("Could not find bot IP address\n" + e.getLocalizedMessage(),
+                    false);
         }
     }
 

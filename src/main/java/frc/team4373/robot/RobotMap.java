@@ -127,7 +127,7 @@ public class RobotMap {
     public static final double LIFT_MAXIMUM_SAFE_ANGLE_1 = 380;
     public static final double LIFT_MINIMUM_SAFE_ANGLE_1 = 12;
     public static final double LIFT_MAXIMUM_SAFE_ANGLE_2 = 580;
-    public static final double LIFT_MINIMUM_SAFE_ANGLE_2 = 250;
+    public static final double LIFT_MINIMUM_SAFE_ANGLE_2 = 280;
     // allowable percent output increase on lift between cycles
     public static final double LIFT_MAXIMUM_RAMP_INCREASE = 0.02;
 
