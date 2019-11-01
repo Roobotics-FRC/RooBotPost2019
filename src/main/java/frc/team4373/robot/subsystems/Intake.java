@@ -21,8 +21,8 @@ public class Intake extends Subsystem {
     private DoubleSolenoid deployPiston1;
     private DigitalInput limitSwitch;
 
-    private static final DoubleSolenoid.Value DEPLOYED = DoubleSolenoid.Value.kForward;
-    private static final DoubleSolenoid.Value RETRACTED = DoubleSolenoid.Value.kReverse;
+    private static final DoubleSolenoid.Value DEPLOYED = DoubleSolenoid.Value.kReverse;
+    private static final DoubleSolenoid.Value RETRACTED = DoubleSolenoid.Value.kForward;
 
     private static final DoubleSolenoid.Value RETAIN_HATCH = DoubleSolenoid.Value.kForward;
     private static final DoubleSolenoid.Value RELEASE_HATCH = DoubleSolenoid.Value.kReverse;
